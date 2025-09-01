@@ -3,13 +3,16 @@ using UnityEngine;
 [ExecuteAlways]
 public class PlayfieldBackground : MonoBehaviour
 {
+    [Header("Size (cells)")]
     public int width = 12;
     public int height = 8;
     public float cell = 1f;
 
+    [Header("Layout")]
     public bool autoCenterToCamera = true;
     public float topMarginWorld = 1.2f;
 
+    [Header("Style")]
     public Color fillColor = new Color(0.08f, 0.08f, 0.08f, 1f);
     public Color borderColor = new Color(1f, 1f, 1f, 0.85f);
     public float borderWidth = 0.04f;
@@ -19,8 +22,8 @@ public class PlayfieldBackground : MonoBehaviour
     LineRenderer _border;
     static Sprite _white1x1;
 
-    void OnEnable()  => Rebuild();
-    void OnValidate()=> Rebuild();
+    void OnEnable()   => Rebuild();
+    void OnValidate() => Rebuild();
 
     Vector2 Origin()
     {
@@ -28,7 +31,6 @@ public class PlayfieldBackground : MonoBehaviour
         {
             var cam = Camera.main;
             float halfH = cam.orthographicSize;
-            float halfW = halfH * cam.aspect;
             var c = (Vector2)cam.transform.position;
             float w = width * cell;
             float h = height * cell;
@@ -56,9 +58,9 @@ public class PlayfieldBackground : MonoBehaviour
             var g = new GameObject("Fill");
             g.transform.SetParent(_root, false);
             _fill = g.AddComponent<SpriteRenderer>();
-            _fill.sharedMaterial = null;      // Sprites/Default
+            _fill.sharedMaterial = null; // Sprites/Default
             _fill.sprite = _white1x1;
-            _fill.sortingOrder = -200;
+            _fill.sortingOrder = -200;   // ниже всего
         }
         if (_border == null)
         {
@@ -69,7 +71,7 @@ public class PlayfieldBackground : MonoBehaviour
             _border.loop = true;
             _border.material = new Material(Shader.Find("Unlit/Color"));
             _border.numCornerVertices = 2;
-            _border.sortingOrder = -150;
+            _border.sortingOrder = -150; // выше заливки, ниже оптики/лучей
         }
     }
 
@@ -82,10 +84,12 @@ public class PlayfieldBackground : MonoBehaviour
         float w = width * cell;
         float h = height * cell;
 
+        // fill
         _fill.color = fillColor;
         _fill.transform.position   = new Vector3(o.x + w*0.5f, o.y + h*0.5f, 0f);
         _fill.transform.localScale = new Vector3(w, h, 1f);
 
+        // border
         _border.startWidth = _border.endWidth = borderWidth;
         _border.material.color = borderColor;
         _border.positionCount = 4;
