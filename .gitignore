@@ -1,0 +1,27 @@
+﻿# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+MemoryCaptures/
+UserSettings/
+ProjectSettings/Derived*
+# Папка кэша менеджера пакетов можно не трекать — Unity восстановит
+[Pp]ackages/com.unity.package-manager/
+
+# IDE / misc
+*.csproj
+*.sln
+*.unityproj
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.pidb.meta
+sysinfo.txt

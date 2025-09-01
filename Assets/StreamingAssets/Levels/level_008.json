@@ -1,0 +1,8 @@
+{
+  "width": 12,
+  "height": 8,
+  "objects": [
+    { "type": "Emitter", "x": 0, "y": 4, "dir": "Right", "color": 7 },
+    { "type": "Target", "x": 10, "y": 4, "required": 7 }
+  ]
+}
